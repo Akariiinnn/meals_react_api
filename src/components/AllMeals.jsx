@@ -13,8 +13,7 @@ const AllMeals = () => {
 
     const fakeMealsArray = [];
 
-    for(let i = 0; i < 25; i++)
-    {
+    for (let i = 0; i < 25; i++) {
         fakeMealsArray.push({
             strMeal: "... ",
             strMealThumb: "/images/loading.gif"
@@ -26,11 +25,18 @@ const AllMeals = () => {
             <div style={{display: "flex", flexWrap: "wrap"}}>
                 {meals ? (
                     <>
-                        {meals.meals.map((meal) => {return (<MealCard meal={meal} style={{width: "20%"}}/>);})}
+                        {meals.meals.map((meal) => {
+                            return (
+                                <>
+                                    <MealCard meal={meal} style={{width: "20%"}}/>
+                                </>)
+                        })}
                     </>
                 ) : (
                     <>
-                        {fakeMealsArray.map((meal) => {return (<MealCard meal={meal} style={{width: "20%"}}/>);})}
+                        {fakeMealsArray.map((meal) => {
+                            return (<MealCard meal={meal} style={{width: "20%"}}/>);
+                        })}
                     </>
                 )}
 

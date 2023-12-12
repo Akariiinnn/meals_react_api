@@ -1,43 +1,33 @@
-import {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 
-const RandomMeal = () => {
-
-    const [randomMeal, setRandomMeal] = useState(null)
-
-    useEffect(() => {
-        (async () => {
-            const randomMealResponse = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
-            setRandomMeal(await randomMealResponse.json());
-        })()
-    },[]);
+const RandomMeal = ({meals}) => {
 
     const sectionCSS = {
-        width: "25%",
+        width: "75%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         margin: "5%"
     }
+    const buttonCSS = {
+        backgroundColor: "lightblue",
+        color: "white",
+        border: "none",
+        padding: "12px 20px",
+        borderRadius: "2em",
+        cursor: "pointer",
+        marginBottom: "5%"
+    }
+
+    const randomMeal = meals[Math.floor(Math.random() * meals.length)]
 
     return (
         <>
-            {randomMeal ? (
-                <>
-                    <h2>Here's a random meal</h2>
-                    {randomMeal.meals.map((randomMeal) => {
-                        return (
-                            <section style={sectionCSS} className={"highlighted"}>
-                                <img src={randomMeal.strMealThumb} alt={randomMeal.strMeal} />
-                                <p>{randomMeal.strMeal}</p>
-                            </section>
-                        );
-                    })}
-                </>
-            ) : (
-                <>
-                    <p>Loading...</p>
-                </>
-            )}
+            <section style={sectionCSS} className={"highlighted"}>
+                <img src={randomMeal.strMealThumb} alt={randomMeal.strMeal}/>
+                <h2>{randomMeal.strMeal}</h2>
+                <Link to={`/meal/${randomMeal.idMeal}`}><button style={buttonCSS}>Voir la recette</button></Link>
+            </section>
         </>
     )
 }

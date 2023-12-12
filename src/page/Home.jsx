@@ -1,13 +1,13 @@
-import {Link} from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import RandomMeal from "../components/RandomMeal";
+import RenderHome from "../components/RenderHome";
 
 const Home = () => {
+
     return (
         <>
             <Header />
-            <RandomMeal />
+            <RenderHome/>
             <Footer />
         </>
     );
